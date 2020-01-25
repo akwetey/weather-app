@@ -11366,3 +11366,7 @@ body {
   max-width: 400px;
 }
 
+.card {
+  min-height: 500px;
+}
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./dist/app.css" />
+  </head>
+  <body>
+    <div class="container my-5 mx-auto">
+      <h1 class="text-muted text-center my-4">Weather App</h1>
+      <form class="text-center text-muted my-4">
+        <label for="city">Enter a location</label>
+        <input type="text" name="city" class="form-control p-4 " />
+      </form>
+      <div class="card shadow-lg rounded">
+        <img
+          src="https://dummyimage.com/640x360/fff/aaa"
+          alt=""
+          class="card-img-top"
+        />
+        <div class="bg-light mx-auto text-center">
+          <!--Icon -->
+        </div>
+        <div class="text-muted text-uppercase text-center">
+          <h4 class="my-3">Name of city</h4>
+          <div class="my-3">Weather Condition</div>
+          <div class="display-4 my-4">
+            <span>temp</span>
+            <span>&deg; C</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./dist/app.js"></script>
+</html>

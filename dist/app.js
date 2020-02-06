@@ -2863,7 +2863,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 
-var apikey = "EGbDx8Ku6WQxGWpwkB4KoWZ95jEjfxxb"; //get current condition
+var apikey = "EGbDx8Ku6WQxGWpwkB4KoWZ95jEjfxxb";
+var card = document.querySelector(".card");
+var details = document.querySelector(".citydetails");
+var image = document.querySelector("#weatherimg");
+var icon = document.querySelector(".icon img"); //get current condition
 
 var currentCondition =
 /*#__PURE__*/
@@ -3039,16 +3043,26 @@ function () {
   };
 }();
 
+var checkItem = localStorage.getItem("location");
+
+if (checkItem) {
+  fetchDetails(checkItem).then(function (response) {
+    updateUi(response, details, card, image, icon);
+  })["catch"](function (err) {
+    return console.log(err);
+  });
+}
+
 var submitFunc = function submitFunc(e) {
   e.preventDefault();
   var city = document.querySelector("#cityName").value.trim();
-  var card = document.querySelector(".card");
-  var details = document.querySelector(".citydetails");
-  var image = document.querySelector("#weatherimg");
-  var icon = document.querySelector(".icon img");
   fetchDetails(city).then(function (response) {
     updateUi(response, details, card, image, icon);
-  });
+  })["catch"](function (err) {
+    return console.log(err);
+  }); //local storage
+
+  localStorage.setItem("location", city);
 };
 
 document.addEventListener("DOMContentLoaded", function () {

@@ -1,5 +1,9 @@
 import axios from "axios";
 const apikey = "EGbDx8Ku6WQxGWpwkB4KoWZ95jEjfxxb";
+const card = document.querySelector(".card");
+const details = document.querySelector(".citydetails");
+const image = document.querySelector("#weatherimg");
+const icon = document.querySelector(".icon img");
 
 //get current condition
 const currentCondition = async (url, apikey) => {
@@ -48,6 +52,7 @@ const updateUi = async (response, details, card, image, icon) => {
   const iconSrc = `../img/icons/${weatherDetails.WeatherIcon}.svg`;
   icon.setAttribute("src", iconSrc);
 };
+
 const fetchDetails = async city => {
   const cityDetails = await cityData(
     `http://dataservice.accuweather.com/locations/v1/cities/search`,
@@ -65,16 +70,26 @@ const fetchDetails = async city => {
   };
 };
 
+const checkItem = localStorage.getItem("location");
+if (checkItem) {
+  fetchDetails(checkItem)
+    .then(response => {
+      updateUi(response, details, card, image, icon);
+    })
+    .catch(err => console.log(err));
+}
+
 const submitFunc = e => {
   e.preventDefault();
   const city = document.querySelector("#cityName").value.trim();
-  const card = document.querySelector(".card");
-  const details = document.querySelector(".citydetails");
-  const image = document.querySelector("#weatherimg");
-  const icon = document.querySelector(".icon img");
-  fetchDetails(city).then(response => {
-    updateUi(response, details, card, image, icon);
-  });
+  fetchDetails(city)
+    .then(response => {
+      updateUi(response, details, card, image, icon);
+    })
+    .catch(err => console.log(err));
+
+  //local storage
+  localStorage.setItem("location", city);
 };
 
 document.addEventListener("DOMContentLoaded", function() {

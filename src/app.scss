@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 @import "~bootstrap";
 
 body {
@@ -12,4 +13,8 @@ body {
 
 .card {
   min-height: 500px;
+}
+
+label {
+  font-size: 1.5rem;
 }
